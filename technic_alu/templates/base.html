@@ -22,8 +22,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         {# Global stylesheets #}
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{% static 'lib/font-awesome/css/font-awesome.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/technic_alu.min.css' %}">
+
 
         {% block extra_css %}
             {# Override this in templates to add extra stylesheets #}
@@ -31,6 +32,19 @@
     </head>
 
     <body class="{% block body_class %}{% endblock %}">
+        <nav class="white lighten-1" role="navigation">
+          <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">TECHNIC-ALU</a>
+            <ul class="right hide-on-med-and-down">
+              <li><a href="/">Accueil</a></li>
+              <li><a href="/fenetres">Gallerie</a></li>
+            </ul>
+
+            <ul id="nav-mobile" class="side-nav">
+              <li><a href="#">Navbar Link</a></li>
+            </ul>
+            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+          </div>
+        </nav>
         {% wagtailuserbar %}
 
         {% block content %}{% endblock %}

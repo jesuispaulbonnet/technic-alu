@@ -11,3 +11,8 @@ gulp.task('sass', function() {
         .pipe(rename('technic_alu.min.css'))
         .pipe(gulp.dest('technic_alu/static/css'));
 });
+
+//Watch task
+gulp.task('watch', function() {
+    gulp.watch('technic_alu/static/sass/**/*.scss', ['sass']);
+});
