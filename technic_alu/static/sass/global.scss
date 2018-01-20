@@ -1,8 +1,13 @@
-
+body {
+  @extend .grey, .lighten-4;
+}
 nav .brand-logo {
     @extend .blue-text, .text-darken-4;
     font-weight: bold;
 }
 nav ul a {
     @extend .blue-text, .text-darken-4;
+}
+.carousel {
+    height: 600px;
 }
