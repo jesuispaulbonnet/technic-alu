@@ -6,18 +6,20 @@
 
 {% block content %}
 
-<div class="carousel carousel-slider" data-indicators="true">
-  <div class="carousel-fixed-item center">
-    <a class="btn waves-effect blue darken-4 white-text darken-text-2" href="#info">En savoir plus</a>
-  </div>
-  {% for item in page.carousel_images.all %}
-      <a class="carousel-item" href="#">
-        {% image item.image fill-1000x600 %}
-      </a>
-  {% endfor %}
+<div class="slider">
+  <ul class="slides">
+    {% for item in page.carousel_images.all %}
+    <li>
+      {% image item.image fill-800x600 %}
+      <div class="caption center-align">
+        <h3>{{ item.title }}</h3>
+        <h5 class="light grey-text text-lighten-3">{{ item.subtitle }}</h5>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
 </div>
 <div id="info" class="container">
-  TEst
 </div>
 
 {% endblock %}

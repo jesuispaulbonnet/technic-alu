@@ -1,7 +1,13 @@
 {% extends "base.html" %}
 
+{% load wagtailcore_tags wagtailimages_tags %}
+
 {% block body_class %}template-homepage{% endblock %}
 
 {% block content %}
-
+<div id="gallery" class="container">
+    {% for item in page.gallery_images.all %}
+        {% image item.image fill-300x200 %}
+    {% endfor %}
+</div>
 {% endblock %}

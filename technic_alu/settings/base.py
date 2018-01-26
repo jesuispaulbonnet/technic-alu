@@ -138,4 +138,4 @@ WAGTAIL_SITE_NAME = "technic_alu"
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
-BASE_URL = 'http://example.com'
+BASE_URL = 'http://technic-alu.fr'

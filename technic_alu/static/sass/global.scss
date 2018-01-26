@@ -8,6 +8,11 @@ nav .brand-logo {
 nav ul a {
     @extend .blue-text, .text-darken-4;
 }
-.carousel {
-    height: 600px;
+.slider {
+    .indicators .indicator-item.active {
+        @extend .blue, .darken-2;
+    }
+    img {
+        opacity: 0.6;
+    }
 }

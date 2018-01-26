@@ -1,4 +1,5 @@
 {% load static wagtailuserbar %}
+{% load wagtailcore_tags %}
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -33,12 +34,17 @@
 
     <body class="{% block body_class %}{% endblock %}">
       <div class="navbar-fixed">
+        <ul id="dropdown-gallerie" class="dropdown-content">
+            {% for gallery_page in gallery_pages %}
+                <li><a href="{% pageurl gallery_page %}">{{ gallery_page.title }}</a></li>
+            {% endfor %}
+        </ul>
         <nav class="white lighten-1" role="navigation">
           <div class="nav-wrapper container">
             <a id="logo-container" href="/" class="brand-logo">TECHNIC-ALU</a>
             <ul class="right hide-on-med-and-down uppercase bold">
               <li><a href="/">Accueil</a></li>
-              <li><a href="/fenetres">Gallerie</a></li>
+              <li><a class="dropdown-button" href="#!" data-activates="dropdown-gallerie">Gallerie</a></li>
               <li><a href="/">Marques</a></li>
               <li><a href="/">Contact</a></li>
             </ul>
@@ -58,7 +64,6 @@
           <div class="container">
             <div class="row">
               <div class="col l6 s12">
-                <h5 class="white-text">Company Bio</h5>
                 <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
 
 
@@ -85,7 +90,7 @@
           </div>
           <div class="footer-copyright">
             <div class="container">
-            Made by Paul Bonnet
+            Fait par Paul Bonnet
             </div>
           </div>
         </footer>
