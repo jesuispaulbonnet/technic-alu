@@ -24,6 +24,7 @@
 
         {# Global stylesheets #}
         <link rel="stylesheet" type="text/css" href="{% static 'lib/font-awesome/css/font-awesome.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'lib/simplelightbox/dist/simplelightbox.min.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/technic_alu.min.css' %}">
 
 
@@ -48,14 +49,25 @@
               <li><a href="/">Marques</a></li>
               <li><a href="/">Contact</a></li>
             </ul>
-
-            <ul id="nav-mobile" class="side-nav">
-              <li><a href="#">Navbar Link</a></li>
-            </ul>
-            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+            <a href="#" data-activates="nav-mobile" class="button-collapse">
+                <i class="fa fa-bars"></i>
+            </a>
           </div>
         </nav>
       </div>
+      <ul id="nav-mobile" class="side-nav collapsible">
+          <li><a href="/">Accueil</a></li>
+          <li>
+              <a class="collapsible-header">Gallerie</a>
+              <ul class="collapsible-body">
+                  {% for gallery_page in gallery_pages %}
+                      <li><a href="{% pageurl gallery_page %}">{{ gallery_page.title }}</a></li>
+                  {% endfor %}
+              </ul>
+          </li>
+          <li><a href="/">Marques</a></li>
+          <li><a href="/">Contact</a></li>
+      </ul>
         {% wagtailuserbar %}
 
         {% block content %}{% endblock %}
@@ -99,6 +111,7 @@
         <!--  Scripts-->
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="{% static 'lib/materialize-src/js/bin/materialize.js' %}"></script>
+        <script src="{% static 'lib/simplelightbox/dist/simple-lightbox.min.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/technic_alu.js' %}"></script>
 
         {% block extra_js %}

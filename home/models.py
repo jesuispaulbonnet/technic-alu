@@ -70,7 +70,11 @@ class GalleryImage(Orderable):
         related_name='gallery_images'
     )
 
-    caption = models.CharField(max_length=250)
+    caption = models.CharField(
+        max_length=250,
+        null=True,
+        blank=True,
+    )
 
     image = models.ForeignKey(
         'wagtailimages.Image',

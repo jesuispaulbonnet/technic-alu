@@ -1,12 +1,35 @@
+html {
+    @extend .blue-text, .text-darken-4;
+}
 body {
   @extend .grey, .lighten-4;
 }
+//
 nav .brand-logo {
     @extend .blue-text, .text-darken-4;
     font-weight: bold;
+    @media #{$small-and-down} {
+        font-size: 2rem;
+    }
 }
 nav ul a {
     @extend .blue-text, .text-darken-4;
+}
+// Mobile Menu
+.button-collapse {
+    @extend .blue-text, .text-darken-4;
+    font-size: 2rem;
+}
+.side-nav {
+     a {
+         @extend .blue-text, .text-darken-4;
+     }
+     .collapsible-header {
+         padding: 0 32px;
+     }
+     .collapsible-body li>a {
+         padding-left: 45px;
+     }
 }
 .slider {
     .indicators .indicator-item.active {
@@ -15,4 +38,28 @@ nav ul a {
     img {
         opacity: 0.6;
     }
+}
+.simple-lightbox {
+    button, span, .sl-counter {
+        @extend .blue-text, .text-darken-4;
+    }
+    .sl-close {
+        font-size: 4rem;
+    }
+    button:focus {
+        background-color: inherit;
+    }
+}
+.page-content {
+    margin-top: 5px;
+}
+.gallery-img {
+    margin-top: 20px;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    transition: transform .15s ease;
+}
+/* line 46, ../sass/demo.scss */
+.gallery-img:hover {
+    transform: scale(1.05);
+    z-index: 5;
 }

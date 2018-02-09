@@ -5,9 +5,24 @@
 {% block body_class %}template-homepage{% endblock %}
 
 {% block content %}
-<div id="gallery" class="container">
+<div id="gallery" class="container page-content">
+    <div class="row">
+        <h3>{{ page.title }}</h3>
+    </div>
+    <div class="row">
     {% for item in page.gallery_images.all %}
-        {% image item.image fill-300x200 %}
+        {% image item.image original as original_img %}
+        <div class="col l3 m4 s6">
+            <a class="gallery_links" href="{{ original_img.url }}">
+                {% image item.image fill-300x200 as min_img %}
+                <img src="{{ min_img.url }}"
+                     alt="{{ min_img.alt }}"
+                     title="{% if item.caption %}{{ item.caption }}{% endif %}"
+                     class="responsive-img gallery-img"
+                />
+            <a/>
+        </div>
     {% endfor %}
+    </div>
 </div>
 {% endblock %}
