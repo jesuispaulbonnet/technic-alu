@@ -1,3 +1,5 @@
+$primary-color: #0D47A1;
+
 html {
     @extend .blue-text, .text-darken-4;
 }
@@ -62,4 +64,23 @@ nav ul a {
 .gallery-img:hover {
     transform: scale(1.05);
     z-index: 5;
+}
+
+.description {
+  ul {
+    padding-left: 40px;
+    &>li {
+      list-style-type: disc;
+    }
+  }
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid $primary-color;
+    filter: opacity(30%);
+    margin: 1em 0;
+    padding: 0;
 }

@@ -5,11 +5,14 @@ from django.db import models
 from modelcluster.fields import ParentalKey
 
 from wagtail.wagtailcore.models import Page, Orderable
+from wagtail.wagtailcore.fields import RichTextField
 from wagtail.wagtailadmin.edit_handlers import (
     InlinePanel,
     FieldPanel,
 )
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
+from wagtail.api import APIField
+from wagtail.wagtailimages.api.fields import ImageRenditionField
 
 
 def get_base_context():
@@ -58,8 +61,15 @@ class GalleryPage(Page):
         context.update(get_base_context())
         return context
 
+    description = RichTextField(blank=True)
+
     content_panels = Page.content_panels + [
+        FieldPanel('description', classname="full"),
         InlinePanel('gallery_images', label="Gallery Images"),
+    ]
+
+    api_fields = [
+        APIField('gallery_images')
     ]
 
 
@@ -81,6 +91,12 @@ class GalleryImage(Orderable):
         on_delete=models.CASCADE,
         related_name='gallery_image'
     )
+
+    api_fields = [
+        APIField('caption'),
+        APIField('image'),
+        APIField('image_thumbnail', serializer=ImageRenditionField('fill-300x200', source='image'))
+    ]
 
     panels = [
         ImageChooserPanel('image'),

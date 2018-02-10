@@ -7,8 +7,10 @@
 {% block content %}
 <div id="gallery" class="container page-content">
     <div class="row">
-        <h3>{{ page.title }}</h3>
+        <h3 class="col s12">{{ page.title }}</h3>
+        <div class="col s12 description">{{ page.description|richtext}}</div>
     </div>
+    <hr class="blue-text text-lighten-4"/>
     <div class="row">
     {% for item in page.gallery_images.all %}
         {% image item.image original as original_img %}
