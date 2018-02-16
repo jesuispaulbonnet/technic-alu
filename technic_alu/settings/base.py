@@ -40,8 +40,7 @@ INSTALLED_APPS = [
     'wagtail.wagtailsearch',
     'wagtail.wagtailadmin',
     'wagtail.wagtailcore',
-    'wagtail.api.v2',
-    'rest_framework',
+    'wagtailgeowidget',
 
     'modelcluster',
     'taggit',
@@ -141,3 +140,6 @@ WAGTAIL_SITE_NAME = "technic_alu"
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 BASE_URL = 'http://technic-alu.fr'
+
+GOOGLE_MAPS_V3_APIKEY = 'AIzaSyBLGui31cti6PhYtrD5Qd_FzS9zjkrSvr8'
+GEO_WIDGET_ZOOM = 12

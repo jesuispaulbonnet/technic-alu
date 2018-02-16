@@ -1,6 +1,8 @@
 from __future__ import absolute_import, unicode_literals
 
 from django.db import models
+from django.utils.functional import cached_property
+from django.conf import settings
 
 from modelcluster.fields import ParentalKey
 
@@ -9,10 +11,11 @@ from wagtail.wagtailcore.fields import RichTextField
 from wagtail.wagtailadmin.edit_handlers import (
     InlinePanel,
     FieldPanel,
+    MultiFieldPanel,
 )
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
-from wagtail.api import APIField
-from wagtail.wagtailimages.api.fields import ImageRenditionField
+from wagtailgeowidget.legacy_edit_handlers import GeoPanel
+from wagtailgeowidget.helpers import geosgeometry_str_to_struct
 
 
 def get_base_context():
@@ -68,10 +71,6 @@ class GalleryPage(Page):
         InlinePanel('gallery_images', label="Gallery Images"),
     ]
 
-    api_fields = [
-        APIField('gallery_images')
-    ]
-
 
 class GalleryImage(Orderable):
     page = ParentalKey(
@@ -92,13 +91,39 @@ class GalleryImage(Orderable):
         related_name='gallery_image'
     )
 
-    api_fields = [
-        APIField('caption'),
-        APIField('image'),
-        APIField('image_thumbnail', serializer=ImageRenditionField('fill-300x200', source='image'))
-    ]
-
     panels = [
         ImageChooserPanel('image'),
         FieldPanel('caption'),
     ]
+
+
+class ContactPage(Page):
+    def get_context(self, request):
+        context = super(ContactPage, self).get_context(request)
+        context.update(get_base_context())
+        context.update({
+            'api_key': settings.GOOGLE_MAPS_V3_APIKEY
+        })
+        return context
+
+    address = models.CharField(max_length=250, blank=True, null=True)
+    location = models.CharField(max_length=250, blank=True, null=True)
+
+    content_panels = Page.content_panels + [
+        MultiFieldPanel([
+            FieldPanel('address'),
+            GeoPanel('location', address_field='address'),
+        ], ('Geo details')),
+    ]
+
+    @cached_property
+    def point(self):
+        return geosgeometry_str_to_struct(self.location)
+
+    @property
+    def lat(self):
+        return self.point['y']
+
+    @property
+    def lng(self):
+        return self.point['x']
