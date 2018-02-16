@@ -2,7 +2,7 @@ from home.models import GalleryImage
 from wagtail.wagtailimages.models import Image
 
 from django.http import JsonResponse
-from django.core.serializers import serialize
+
 
 def get_gallery_images(request):
     page_id = request.GET.get('page_id', None)
@@ -12,12 +12,14 @@ def get_gallery_images(request):
     }
     return JsonResponse(data, json_dumps_params={'indent': 2})
 
+
 def serialize_image(image):
     return {
         'id': image.pk,
         'title': image.title if hasattr(image, 'title') else None,
         'file': image.file.url,
     }
+
 
 def serialize_gallery_image(gallery_image):
     image = Image.objects.get(pk=gallery_image.image.pk)
@@ -28,6 +30,7 @@ def serialize_gallery_image(gallery_image):
         'image': serialize_image(image),
         'image_thumbnail': serialize_image(image_thumbnail),
     }
+
 
 def serialize_gallery_images(gallery_images):
     return [

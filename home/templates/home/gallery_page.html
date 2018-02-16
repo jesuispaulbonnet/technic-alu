@@ -1,30 +1,54 @@
 {% extends "base.html" %}
 
 {% load wagtailcore_tags wagtailimages_tags %}
+{% load staticfiles %}
 
 {% block body_class %}template-homepage{% endblock %}
 
 {% block content %}
-<div id="gallery" class="container page-content">
+<input id="page_id" type="hidden"  value="{{ page.id }}">
+
+<div id="gallery" class="container page-content fade-in-up">
     <div class="row">
         <h3 class="col s12">{{ page.title }}</h3>
         <div class="col s12 description">{{ page.description|richtext}}</div>
     </div>
     <hr class="blue-text text-lighten-4"/>
-    <div class="row">
-    {% for item in page.gallery_images.all %}
-        {% image item.image original as original_img %}
-        <div class="col l3 m4 s6">
-            <a class="gallery_links" href="{{ original_img.url }}">
-                {% image item.image fill-300x200 as min_img %}
-                <img src="{{ min_img.url }}"
-                     alt="{{ min_img.alt }}"
-                     title="{% if item.caption %}{{ item.caption }}{% endif %}"
-                     class="responsive-img gallery-img"
-                />
-            <a/>
-        </div>
-    {% endfor %}
+    {% verbatim %}
+    <div id="gallery_container">
+        <script id='gallery_images' type='text/ractive'>
+            {{#if images}}
+            <div class="row">
+                {{#each images:i}}
+                    {{#if i < max_images}}
+                        <div class="col l3 m4 s6">
+                            <a class="gallery_links" href="{{ .image.file }}">
+                                <img src="{{ .image_thumbnail.file }}"
+                                     alt="{{ .image.title }}"
+                                     title="{{ .caption }}"
+                                     class="responsive-img gallery-img fade-in-up"
+                                />
+                            <a/>
+                        </div>
+                    {{/if}}
+                {{/each}}
+            </div>
+            {{#if images.length > max_images}}
+                <div class="row center-align">
+                    <button class="btn waves-effect waves-light blue darken-4"
+                            on-click="add_gallery_images">
+                        Voir plus
+                    </button>
+                </div>
+            {{/if}}
+            {{/if}}
+        </script>
     </div>
+    {% endverbatim %}
 </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript" src="{% static '/lib/ractive/ractive.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/gallery_page.js' %}"></script>
 {% endblock %}

@@ -114,8 +114,6 @@
         <script src="{% static 'lib/simplelightbox/dist/simple-lightbox.min.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/technic_alu.js' %}"></script>
 
-        {% block extra_js %}
-            {# Override this in templates to add extra javascript #}
-        {% endblock %}
+        {% block extra_js %}{% endblock %}
     </body>
 </html>

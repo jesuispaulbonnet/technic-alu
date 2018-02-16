@@ -5,11 +5,4 @@ $(document).ready(function() {
     });
     $('.dropdown-button').dropdown();
     $('.collapsible').collapsible();
-
-    $('#gallery .gallery_links').simpleLightbox({
-        'navText': [
-            '<i class="fa fa-angle-left"></i>',
-            '<i class="fa fa-angle-right"></i>',
-        ]
-    });
 });
