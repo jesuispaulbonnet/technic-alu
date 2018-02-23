@@ -21,6 +21,7 @@ from wagtailgeowidget.helpers import geosgeometry_str_to_struct
 def get_base_context():
     context = {}
     context['gallery_pages'] = GalleryPage.objects.live().in_menu()
+    context['contact_page'] = ContactPage.objects.live().in_menu().first()
     return context
 
 
@@ -106,14 +107,23 @@ class ContactPage(Page):
         })
         return context
 
-    address = models.CharField(max_length=250, blank=True, null=True)
-    location = models.CharField(max_length=250, blank=True, null=True)
+    map_address = models.CharField(max_length=250)
+    location = models.CharField(max_length=250)
+    zoom = models.IntegerField(null=True)
+
+    address = RichTextField(blank=True)
+    contact = RichTextField(blank=True)
+    other_info = RichTextField(blank=True)
 
     content_panels = Page.content_panels + [
         MultiFieldPanel([
-            FieldPanel('address'),
-            GeoPanel('location', address_field='address'),
-        ], ('Geo details')),
+            FieldPanel('map_address'),
+            GeoPanel('location', address_field='map_address'),
+            FieldPanel('zoom'),
+        ], ('Google Map configuration')),
+        FieldPanel('address', classname="full"),
+        FieldPanel('contact', classname="full"),
+        FieldPanel('other_info', classname="full"),
     ]
 
     @cached_property
