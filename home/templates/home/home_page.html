@@ -1,8 +1,7 @@
 {% extends "base.html" %}
 
 {% load wagtailcore_tags wagtailimages_tags %}
-
-{% block body_class %}template-homepage{% endblock %}
+{% load staticfiles %}
 
 {% block content %}
 
@@ -22,4 +21,8 @@
 <div id="info" class="container">
 </div>
 
+{% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript" src="{% static 'dist/home_page.min.js' %}"></script>
 {% endblock %}
