@@ -124,6 +124,7 @@ class ContactPage(Page):
         FieldPanel('address', classname="full"),
         FieldPanel('contact', classname="full"),
         FieldPanel('other_info', classname="full"),
+        InlinePanel('receiver_emails', label="Adresses emails receveurs"),
     ]
 
     @cached_property
@@ -137,3 +138,17 @@ class ContactPage(Page):
     @property
     def lng(self):
         return self.point['x']
+
+
+class ReceiverEmails(Orderable):
+    page = ParentalKey(
+        ContactPage,
+        on_delete=models.CASCADE,
+        related_name='receiver_emails'
+    )
+
+    email = models.CharField(max_length=250)
+
+    panels = [
+        FieldPanel('email'),
+    ]

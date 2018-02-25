@@ -16,19 +16,24 @@ $(document).ready(function() {
     // Function to add more images into the gallery
     ractive_contact_form.on('send_message', () => {
       console.log(ractive_contact_form.get('form'));
+      let csrftoken = get_cookie('csrftoken');
+      $.ajaxSetup({
+          beforeSend: function(xhr, settings) {
+              xhr.setRequestHeader("X-CSRFToken", csrftoken);
+          }
+      });
+      $.ajax({
+          url: get_base_url() + '/api/send_message/',
+          method: 'POST',
+          data: JSON.stringify(ractive_contact_form.get('form')),
+          dataType: 'json'
+      }).done((response) => {
+          if (response.data) {
+              console.log(response.data);
+          }
+      });
     });
-    // // Add images related to the page
-    // $.ajax({
-    //     url: get_base_url() + '/api/gallery_images',
-    //     method: 'GET',
-    //     data: {page_id: $('#page_id').attr('value')},
-    //     dataType: 'json'
-    // }).done((response) => {
-    //     if (response.data) {
-    //         ractive_gallery.set('images', response.data);
-    //         ractive_gallery.fire('add_gallery_images');
-    //     }
-    // });
+
     ractive_contact_form.observe('form.phone_number', function (phone_number) {
       if (phone_number && !isNaN(phone_number) && phone_number.length === 10) {
         let phone_number_array = [];
@@ -75,4 +80,20 @@ function get_base_url() {
     let current_href = window.location.href;
     let current_path = window.location.pathname;
     return current_href.replace(current_path, '');
+}
+
+function get_cookie(name) {
+  var cookieValue = null;
+  if (document.cookie && document.cookie !== '') {
+      var cookies = document.cookie.split(';');
+      for (var i = 0; i < cookies.length; i++) {
+          var cookie = $.trim(cookies[i]);
+          // Does this cookie string begin with the name we want?
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+              cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+              break;
+          }
+      }
+  }
+  return cookieValue;
 }

@@ -20,6 +20,7 @@ urlpatterns = [
     url(r'^search/$', search_views.search, name='search'),
 
     url(r'^api/gallery_images/$', views.get_gallery_images),
+    url(r'^api/send_message/$', views.send_message),
 
     # For anything not caught by a more specific rule above, hand over to
     # Wagtail's page serving mechanism. This should be the last pattern in

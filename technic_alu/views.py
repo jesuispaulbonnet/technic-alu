@@ -1,5 +1,7 @@
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from technic_alu.controllers.gallery_image import get_gallery_images_by_page_id
+from technic_alu.controllers.send_email import send_email
+import json
 
 
 def get_gallery_images(request):
@@ -10,3 +12,14 @@ def get_gallery_images(request):
         },
         json_dumps_params={'indent': 2}
     )
+
+def send_message(request):
+    if request.method == 'POST':
+        message = json.loads(request.body)
+        result = send_email(message)
+        return JsonResponse(
+            {
+                'data': result
+            },
+            json_dumps_params={'indent': 2}
+        )
