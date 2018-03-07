@@ -139,3 +139,12 @@ hr {
         box-shadow: 0 1px 0 0 lighten($primary-color, 60%);
     }
 }
+
+.loader-send-message {
+  width: 25px;
+  height: 25px;
+  margin-bottom: -7px;
+  .spinner-layer {
+      border-color: white;
+  }
+}

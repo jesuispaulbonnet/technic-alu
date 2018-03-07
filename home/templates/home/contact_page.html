@@ -70,11 +70,31 @@
             <div class="col s12">
                 <button class="btn waves-effect waves-light blue darken-4"
                         on-click="send_message"
-                        {{#if !form_completed}}disabled{{/if}}>
-                    Envoyez
+                        {{#if !form_completed || form_sent}}disabled{{/if}}>
+                    {{#if form_loading}}
+                      {{>loading}}
+                    {{elseif form_sent}}
+                      Envoyé
+                    {{else}}
+                      Envoyez
+                    {{/if}}
                 </button>
             </div>
+            <script id='loading' type='text/ractive'>
+              <div class="preloader-wrapper loader-send-message active">
+                <div class="spinner-layer">
+                  <div class="circle-clipper left">
+                    <div class="circle"></div>
+                  </div><div class="gap-patch">
+                    <div class="circle"></div>
+                  </div><div class="circle-clipper right">
+                    <div class="circle"></div>
+                  </div>
+                </div>
+              </div>
+            </script>
           </script>
+
         </div>
         {% endverbatim %}
     </div>

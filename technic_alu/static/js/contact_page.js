@@ -15,7 +15,9 @@ $(document).ready(function() {
     window.ractive_contact_form = ractive_contact_form;
     // Function to add more images into the gallery
     ractive_contact_form.on('send_message', () => {
-      console.log(ractive_contact_form.get('form'));
+      ractive_contact_form.set({
+          'form_loading': true
+      });
       let csrftoken = get_cookie('csrftoken');
       $.ajaxSetup({
           beforeSend: function(xhr, settings) {
@@ -29,8 +31,15 @@ $(document).ready(function() {
           dataType: 'json'
       }).done((response) => {
           if (response.data) {
-              console.log(response.data);
+              ractive_contact_form.set({
+                  'form_sent': true
+              });
+              Materialize.toast('Le message a été envoyé', 4000)
           }
+      }).complete(() => {
+          ractive_contact_form.set({
+              'form_loading': false
+          });
       });
     });
 
