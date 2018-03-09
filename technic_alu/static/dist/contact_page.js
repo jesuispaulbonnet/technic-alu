@@ -20,8 +20,8 @@ $(document).ready(function() {
       });
       let csrftoken = get_cookie('csrftoken');
       $.ajaxSetup({
-          beforeSend: function(xhr, settings) {
-              xhr.setRequestHeader("X-CSRFToken", csrftoken);
+          beforeSend: function(xhr) {
+              xhr.setRequestHeader('X-CSRFToken', csrftoken);
           }
       });
       $.ajax({
@@ -34,8 +34,15 @@ $(document).ready(function() {
               ractive_contact_form.set({
                   'form_sent': true
               });
-              Materialize.toast('Le message a été envoyé', 4000)
+              Materialize.toast('Le message a été envoyé', 4000);
           }
+      }).fail((response) => {
+          Materialize.toast(
+              'Le message n\'a pas pu être envoyé, ' +
+              's\'il vous plaît veuillez réessayer plus tard',
+              4000
+          );
+          console.error(response);
       }).complete(() => {
           ractive_contact_form.set({
               'form_loading': false

@@ -4,6 +4,7 @@
 {% load staticfiles %}
 
 {% block content %}
+{% csrf_token %}
 <div class="gmap">
     <iframe
       width="600"
@@ -30,7 +31,7 @@
         {% verbatim %}
         <div id="contact_form_container" class="col m8 s12 message-form">
           <script id='contact_form' type='text/ractive'>
-            <h4>Envoyez un message</h4>
+            <h4 class="col s12">Envoyez un message</h4>
             <br/>
             <div class="input-field col m6 s12">
               <input placeholder="Prénom et nom"
