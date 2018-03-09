@@ -31,8 +31,12 @@ class HomePage(Page):
         context.update(get_base_context())
         return context
 
+    presentation_text = RichTextField(blank=True)
+
     content_panels = Page.content_panels + [
         InlinePanel('carousel_images', label="Carousel Images"),
+        FieldPanel('presentation_text', classname="full"),
+        InlinePanel('presentation_blocks', label="Page d'accueil sections"),
     ]
 
 
@@ -56,6 +60,27 @@ class CarouselImage(Orderable):
         ImageChooserPanel('image'),
         FieldPanel('title'),
         FieldPanel('subtitle'),
+    ]
+
+
+class PresentationBlock(Orderable):
+    page = ParentalKey(
+        HomePage,
+        on_delete=models.CASCADE,
+        related_name='presentation_blocks'
+    )
+
+    description = RichTextField(blank=True)
+
+    image = models.ForeignKey(
+        'wagtailimages.Image',
+        on_delete=models.CASCADE,
+        related_name='+'
+    )
+
+    panels = [
+        ImageChooserPanel('image'),
+        FieldPanel('description', classname="full"),
     ]
 
 
@@ -151,4 +176,39 @@ class ReceiverEmails(Orderable):
 
     panels = [
         FieldPanel('email'),
+    ]
+
+
+class MarquePage(Page):
+    def get_context(self, request):
+        context = super(MarquePage, self).get_context(request)
+        context.update(get_base_context())
+        return context
+
+    text = RichTextField(blank=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel('text', classname="full"),
+        InlinePanel('marque_blocks', label="Marque sections"),
+    ]
+
+
+class MarqueBlock(Orderable):
+    page = ParentalKey(
+        MarquePage,
+        on_delete=models.CASCADE,
+        related_name='marque_blocks'
+    )
+
+    description = RichTextField(blank=True)
+
+    image = models.ForeignKey(
+        'wagtailimages.Image',
+        on_delete=models.CASCADE,
+        related_name='+'
+    )
+
+    panels = [
+        ImageChooserPanel('image'),
+        FieldPanel('description', classname="full"),
     ]

@@ -1,6 +1,7 @@
-from django.http import JsonResponse, HttpResponse
+from django.http import JsonResponse
 from technic_alu.controllers.gallery_image import get_gallery_images_by_page_id
 from technic_alu.controllers.send_email import send_email
+from wagtail.wagtailimages.models import Rendition
 import json
 
 
@@ -13,6 +14,7 @@ def get_gallery_images(request):
         json_dumps_params={'indent': 2}
     )
 
+
 def send_message(request):
     if request.method == 'POST':
         message = json.loads(request.body)
@@ -20,6 +22,17 @@ def send_message(request):
         return JsonResponse(
             {
                 'data': result
+            },
+            json_dumps_params={'indent': 2}
+        )
+
+
+def remove_reditions(request):
+    if request.method == 'GET':
+        Rendition.objects.all().delete()
+        return JsonResponse(
+            {
+                'result': 'OK'
             },
             json_dumps_params={'indent': 2}
         )

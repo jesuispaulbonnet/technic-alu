@@ -40,6 +40,9 @@ nav ul a {
     img {
         opacity: 0.6;
     }
+    h3, h5 {
+        text-shadow: 0px 0px 10px color('grey', 'darken-2');
+    }
 }
 .simple-lightbox {
     button, span, .sl-counter {
@@ -73,6 +76,14 @@ nav ul a {
       list-style-type: disc;
     }
   }
+  p, ul {
+      font-size: 1.3rem;
+      font-weight: 350;
+      @extend .grey-text, .text-darken-4;
+  }
+  a {
+     @extend .blue-text, .text-darken-4;
+  }
 }
 
 hr {
@@ -87,7 +98,7 @@ hr {
 
 .gmap {
     overflow:hidden;
-    padding-bottom: 350px;
+    padding-bottom: 450px;
     position:relative;
     height:0;
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
@@ -104,13 +115,18 @@ hr {
     margin: 0.5px;
 }
 
-.page-footer a:hover {
-    opacity: 0.5;
+p > a, .page-footer a {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+p > a:hover, .page-footer a:hover {
+    opacity: 0.6;
 }
 
 .message-form {
     .input-field label {
         color: $primary-color;
+        font-size: 1.3rem;
     }
     .input-field input[type=text],
     .input-field input[type=email],
@@ -138,6 +154,10 @@ hr {
         border-bottom: 1px solid lighten($primary-color, 40%);
         box-shadow: 0 1px 0 0 lighten($primary-color, 60%);
     }
+    .input-field textarea  {
+        min-height: 150px;
+    }
+    margin-top: 90px;
 }
 
 .loader-send-message {
@@ -149,6 +169,15 @@ hr {
   }
 }
 
-.card-panel {
+.contact-panel {
     padding-bottom: 50px;
 }
+.marque-panel {
+    min-height: 250px;
+}
+@media #{$small-and-down} {
+    .valign-wrapper {
+        display: inherit;
+        align-items: inherit;
+    }
+ }

@@ -1,6 +1,7 @@
 from home.models import GalleryImage
 from wagtail.wagtailimages.models import Image
 
+
 def get_gallery_images_by_page_id(page_id):
     gallery_images = GalleryImage.objects.filter(page=page_id).all()
     return serialize_gallery_images(gallery_images)
