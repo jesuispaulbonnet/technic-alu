@@ -21,7 +21,7 @@ def send_email(send_message_dict):
         )
     )
     message = render_to_string(
-        'home\email_template.html',
+        'email_template.html',
         context={
             'name': send_message_dict.get('name'),
             'phone_number': send_message_dict.get('phone_number'),
