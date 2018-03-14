@@ -150,4 +150,4 @@ MJ_APIKEY_PRIVATE = '67deddde99679fbdd6bee41de3e6b5fd'
 EMAIL_FROM = 'technic-alu-messages@paul-bonnet.cool'
 EMAIL_NAME = 'technic-alu.fr'
 
-ALLOWED_HOSTS = ['35.195.34.253', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['technic-alu.paul-bonnet.cool','35.195.34.253', 'localhost', '127.0.0.1']
