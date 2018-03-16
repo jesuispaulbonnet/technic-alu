@@ -142,7 +142,7 @@ WAGTAIL_SITE_NAME = "technic_alu"
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 BASE_URL = 'http://technic-alu.fr'
 
-GOOGLE_MAPS_V3_APIKEY = 'AIzaSyBLGui31cti6PhYtrD5Qd_FzS9zjkrSvr8'
+GOOGLE_MAPS_V3_APIKEY = 'AIzaSyARCd5-uf47ZfM3_K8D40bbdNWY2hbuJCs'
 GEO_WIDGET_ZOOM = 12
 
 MJ_APIKEY_PUBLIC = '8f46becdbc1059642c30afee8da729ec'
@@ -150,4 +150,4 @@ MJ_APIKEY_PRIVATE = '67deddde99679fbdd6bee41de3e6b5fd'
 EMAIL_FROM = 'technic-alu-messages@paul-bonnet.cool'
 EMAIL_NAME = 'technic-alu.fr'
 
-ALLOWED_HOSTS = ['technic-alu.paul-bonnet.cool','35.195.34.253', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['technic-alu.paul-bonnet.cool', 'localhost', '127.0.0.1']
