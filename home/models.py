@@ -212,3 +212,16 @@ class MarqueBlock(Orderable):
         ImageChooserPanel('image'),
         FieldPanel('description', classname="full"),
     ]
+
+
+class MentionLegalPage(Page):
+    def get_context(self, request):
+        context = super(MentionLegalPage, self).get_context(request)
+        context.update(get_base_context())
+        return context
+
+    text = RichTextField(blank=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel('text', classname="full"),
+    ]

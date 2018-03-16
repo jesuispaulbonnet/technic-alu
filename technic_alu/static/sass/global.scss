@@ -1,30 +1,33 @@
-$primary-color: #0D47A1;
+$primary-color: color('blue', 'darken-4');
+$background-content-color: color('grey', 'lighten-4');
+$grey-color: color('grey', 'darken-2');
+$text-color: color('grey', 'darken-4');
 
 html {
-    @extend .blue-text, .text-darken-4;
+    color: $primary-color;
 }
 body {
-  @extend .grey, .lighten-4;
+  background-color: $background-content-color;
 }
 //
 nav .brand-logo {
-    @extend .blue-text, .text-darken-4;
+    color: $primary-color;
     font-weight: bold;
     @media #{$small-and-down} {
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
 }
-nav ul a {
-    @extend .blue-text, .text-darken-4;
+nav ul > li > a {
+    color: $primary-color!important;
 }
 // Mobile Menu
 .button-collapse {
-    @extend .blue-text, .text-darken-4;
+    color: $primary-color;
     font-size: 2rem;
 }
 .side-nav {
      a {
-         @extend .blue-text, .text-darken-4;
+        color: $primary-color;
      }
      .collapsible-header {
          padding: 0 32px;
@@ -35,18 +38,18 @@ nav ul a {
 }
 .slider {
     .indicators .indicator-item.active {
-        @extend .blue, .darken-2;
+        background-color: lighten($primary-color, 40%);
     }
     img {
         opacity: 0.6;
     }
     h3, h5 {
-        text-shadow: 0px 0px 10px color('grey', 'darken-2');
+        text-shadow: 0px 0px 10px $grey-color;
     }
 }
 .simple-lightbox {
     button, span, .sl-counter {
-        @extend .blue-text, .text-darken-4;
+        color: $primary-color;
     }
     .sl-close {
         font-size: 4rem;
@@ -79,10 +82,10 @@ nav ul a {
   p, ul {
       font-size: 1.3rem;
       font-weight: 350;
-      @extend .grey-text, .text-darken-4;
+      color: $text-color;
   }
   a {
-     @extend .blue-text, .text-darken-4;
+     color: $primary-color;
   }
 }
 
