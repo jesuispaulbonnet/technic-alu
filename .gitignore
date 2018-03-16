@@ -1,4 +1,5 @@
 node_modules/
 media/images/
 venv/
+static/
 *.pyc
