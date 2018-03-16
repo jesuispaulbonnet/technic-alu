@@ -27,7 +27,7 @@ nav ul > li > a {
 }
 .side-nav {
      a {
-        color: $primary-color;
+        color: $primary-color!important;
      }
      .collapsible-header {
          padding: 0 32px;
