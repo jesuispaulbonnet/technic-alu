@@ -9,7 +9,7 @@
   <ul class="slides">
     {% for item in page.carousel_images.all %}
     <li>
-      {% image item.image fill-800x600 %}
+      {% image item.image fill-800x600 class="responsive-img" %}
       <div class="caption center-align">
         <h3 class="light grey-text text-lighten-3">{{ item.title }}</h3>
         <h5 class="light grey-text text-lighten-3">{{ item.subtitle }}</h5>
