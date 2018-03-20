@@ -76,7 +76,7 @@ function validate_form(form) {
 }
 
 function is_email(value) {
-    if(value && typeof value === 'string') {
+    if (value && typeof value === 'string') {
         return value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
     }
     return false;
