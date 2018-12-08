@@ -150,12 +150,9 @@ MJ_APIKEY_PRIVATE = '67deddde99679fbdd6bee41de3e6b5fd'
 EMAIL_FROM = 'technic-alu-messages@paul-bonnet.cool'
 EMAIL_NAME = 'technic-alu.fr'
 
-ALLOWED_HOSTS = ['technic-alu.paul-bonnet.cool', 'localhost', '127.0.0.1', '35.195.34.253']
+ALLOWED_HOSTS = ['technic-alu.paul-bonnet.cool', 'localhost', '127.0.0.1']
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SECURE_SSL_REDIRECT = True
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-
-
