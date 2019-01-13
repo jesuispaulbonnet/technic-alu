@@ -225,3 +225,37 @@ class MentionLegalPage(Page):
     content_panels = Page.content_panels + [
         FieldPanel('text', classname="full"),
     ]
+
+
+class TexteEtImagesPage(Page):
+    def get_context(self, request):
+        context = super(TexteEtImagesPage, self).get_context(request)
+        context.update(get_base_context())
+        return context
+
+    content_panels = Page.content_panels + [
+        InlinePanel('texte_ou_images', label="Texte ou image"),
+    ]
+
+
+class TexteOuImage(Orderable):
+    page = ParentalKey(
+        TexteEtImagesPage,
+        on_delete=models.CASCADE,
+        related_name='texte_ou_images'
+    )
+
+    text = RichTextField(blank=True)
+
+    image = models.ForeignKey(
+        'wagtailimages.Image',
+        on_delete=models.CASCADE,
+        related_name='+',
+        null=True,
+        blank=True,
+    )
+
+    panels = [
+        FieldPanel('text'),
+        ImageChooserPanel('image'),
+    ]
