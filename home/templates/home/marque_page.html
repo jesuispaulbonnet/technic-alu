@@ -3,10 +3,10 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 
 {% block content %}
-<div class="container fade-in-up">
+<div class="page-container fade-in-up">
     <div class="row">
         <h3 class="col s12 center-align">{{ page.title }}</h3>
-        <div class="col s12 description">{{ page.text | richtext }}</div>
+        <div class="col s12 description flow-text">{{ page.text | richtext }}</div>
     </div>
     {% for item in page.marque_blocks.all %}
         <div class="card-panel marque-panel row valign-wrapper">

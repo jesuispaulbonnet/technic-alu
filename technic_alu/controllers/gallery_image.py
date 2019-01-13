@@ -17,7 +17,7 @@ def serialize_image(image):
 
 def serialize_gallery_image(gallery_image):
     image = Image.objects.get(pk=gallery_image.image.pk)
-    image_thumbnail = image.get_rendition('fill-300x200')
+    image_thumbnail = image.get_rendition('fill-450x270')
     return {
         'id': gallery_image.pk,
         'caption': gallery_image.caption,
