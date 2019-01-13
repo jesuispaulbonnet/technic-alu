@@ -80,6 +80,9 @@ nav ul > li > a {
   }
   .caption {
       top: 25%!important;
+      @media #{$small-and-down} {
+          top: 15%!important;
+      }
   }
   ul.slides {
       @media #{$medium-and-up} {
@@ -108,6 +111,11 @@ nav ul > li > a {
 }
 .page-content {
     margin-top: 5px;
+}
+.page-container {
+    @media #{$medium-and-up} {
+      margin: 5px 30px 0px!important;
+    }
 }
 .gallery-img {
     margin-top: 20px;
@@ -232,3 +240,13 @@ p > a:hover, .page-footer a:hover {
         align-items: inherit;
     }
  }
+
+.home-content {
+    @media #{$small-and-down} {
+      margin-top: 100px;
+    }
+}
+
+.no-box-shadow {
+    box-shadow: none!important;  
+}
