@@ -21,7 +21,7 @@ body {
 nav .brand-logo {
     color: $primary-color;
     font-weight: bold;
-    font-size: 2.5rem;
+    font-size: 2rem;
     padding-left: 15px;
     @media #{$small-and-down} {
         font-size: 1.5rem;
@@ -29,7 +29,7 @@ nav .brand-logo {
 }
 nav ul > li > a {
     color: $primary-color!important;
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 // Mobile Menu
 .button-collapse {
@@ -73,10 +73,10 @@ nav ul > li > a {
     text-shadow: 0px 0px 10px $grey-color;
   }
   h3 {
-    font-size: 3.5rem;
+    font-size: 3rem;
   }
   h5 {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
   .caption {
       top: 25%!important;
@@ -248,5 +248,5 @@ p > a:hover, .page-footer a:hover {
 }
 
 .no-box-shadow {
-    box-shadow: none!important;  
+    box-shadow: none!important;
 }
